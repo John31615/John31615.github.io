@@ -1,7 +1,34 @@
     (function() {
+      const body = document.body;
+      const themeToggle = document.getElementById('theme-toggle');
       const menuIcon = document.getElementById('menu-icon');
       const nav = document.querySelector('.nav');
       const navLinks = document.getElementById('nav-links');
+
+      const applyTheme = (isLightMode) => {
+        body.classList.toggle('light-mode', isLightMode);
+
+        if (themeToggle) {
+          const icon = themeToggle.querySelector('i');
+          if (icon) {
+            icon.classList.toggle('fa-sun', isLightMode);
+            icon.classList.toggle('fa-moon', !isLightMode);
+          }
+          themeToggle.setAttribute('aria-label', isLightMode ? 'Switch to dark mode' : 'Switch to light mode');
+        }
+
+        localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+      };
+
+      const savedTheme = localStorage.getItem('theme');
+      const prefersLightMode = window.matchMedia('(prefers-color-scheme: light)').matches;
+      applyTheme(savedTheme ? savedTheme === 'light' : prefersLightMode);
+
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          applyTheme(!body.classList.contains('light-mode'));
+        });
+      }
 
       if (menuIcon && nav && navLinks) {
         menuIcon.addEventListener('click', () => {
