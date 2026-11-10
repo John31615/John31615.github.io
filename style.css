@@ -21,6 +21,23 @@
   --mono-font: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 }
 
+body.light-mode {
+  --bg: #edf4ff;
+  --bg-gradient: radial-gradient(circle at 80% 20%, rgba(133, 164, 255, 0.28) 0%, rgba(237, 244, 255, 1) 70%);
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-border: rgba(120, 141, 184, 0.2);
+  --surface-hover: rgba(255, 255, 255, 0.96);
+  --text: #101827;
+  --muted: #465a79;
+  --subtle: #64748b;
+  --primary: #2f5ae5;
+  --primary-glow: rgba(47, 90, 229, 0.22);
+  --accent-cyan: #0ea5e9;
+  --accent-glow: 0 0 25px rgba(14, 165, 233, 0.22);
+  --portrait-border: #3f6ae8;
+  --portrait-glow: 0 0 35px rgba(63, 106, 232, 0.28), inset 0 0 15px rgba(15, 118, 110, 0.12);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -76,6 +93,11 @@ a {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+body.light-mode .site-header {
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom-color: rgba(83, 98, 128, 0.18);
+}
+
 .brand-mono {
   font-family: var(--mono-font);
   font-size: 1.05rem;
@@ -116,6 +138,26 @@ a {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.theme-toggle {
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  border-color: rgba(77, 130, 243, 0.5);
+  background: rgba(77, 130, 243, 0.08);
 }
 
 #menu-icon {
@@ -296,6 +338,30 @@ a {
   font-weight: 700;
   letter-spacing: -0.03em;
   color: #ffffff;
+}
+
+body.light-mode .section-title,
+body.light-mode .hero-title,
+body.light-mode .glass-card h3,
+body.light-mode .project-card h3,
+body.light-mode .contact-box h2,
+body.light-mode .status-pill strong,
+body.light-mode .brand-mono,
+body.light-mode .nav-links a:hover,
+body.light-mode .nav-links a.active,
+body.light-mode .hero-role,
+body.light-mode .nav-links a {
+  color: #111827;
+}
+
+body.light-mode .btn-outline,
+body.light-mode .btn-outline:hover,
+body.light-mode .btn-outline:visited,
+body.light-mode .project-footer a,
+body.light-mode .social-links a,
+body.light-mode .brand-mono,
+body.light-mode .hero-role {
+  color: #1f2937;
 }
 
 /* About Grid */
@@ -540,6 +606,10 @@ a {
   -webkit-backdrop-filter: blur(16px);
 }
 
+body.light-mode .contact-box {
+  background: radial-gradient(circle at 50% 0%, rgba(120, 146, 255, 0.12) 0%, rgba(255, 255, 255, 0.9) 100%);
+}
+
 .contact-box h2 {
   font-size: clamp(2rem, 3.8vw, 3rem);
   font-weight: 700;
@@ -595,6 +665,10 @@ a {
 @media (max-width: 900px) {
   .site-header {
     padding: 1.2rem 1.5rem;
+  }
+
+  body.light-mode .nav {
+    background: rgba(255, 255, 255, 0.94);
   }
 
   .nav {
